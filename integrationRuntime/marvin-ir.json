@@ -1,0 +1,6 @@
+{
+	"name": "marvin-ir",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
