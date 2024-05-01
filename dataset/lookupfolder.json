@@ -1,0 +1,20 @@
+{
+	"name": "lookupfolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_Datalake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "dims/curated",
+				"fileSystem": "landing"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
