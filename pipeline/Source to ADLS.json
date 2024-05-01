@@ -109,20 +109,29 @@
 					},
 					"activities": [
 						{
-							"name": "Set variable1",
-							"type": "SetVariable",
+							"name": "Notebook1",
+							"type": "DatabricksNotebook",
 							"dependsOn": [],
 							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "Foldername",
-								"value": {
-									"value": "@item().name",
-									"type": "Expression"
+								"notebookPath": "/Users/theroundeyess@gmail.com/Development/Curated",
+								"baseParameters": {
+									"FileName": {
+										"value": "@item().name",
+										"type": "Expression"
+									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureDatabricks1",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
