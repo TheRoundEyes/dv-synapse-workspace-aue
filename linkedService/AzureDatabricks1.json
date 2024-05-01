@@ -1,0 +1,17 @@
+{
+	"name": "AzureDatabricks1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-2412383571786458.18.azuredatabricks.net",
+			"existingClusterId": "0501-062812-rf0rdnw8",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmMjdjNGZhOC02MDQyLTQ5ZGMtYTc5NS1lMzdhODdlNjJjZDgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "marvin-ir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
