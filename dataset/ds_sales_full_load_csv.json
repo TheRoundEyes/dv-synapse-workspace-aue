@@ -15,8 +15,12 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().TableName, addhours(utcnow('dd-MM-yy'),7),'.csv')",
+					"type": "Expression"
+				},
 				"folderPath": {
-					"value": "@pipeline().parameters.DestinationTable",
+					"value": "sales/@{dataset().TableName}",
 					"type": "Expression"
 				},
 				"fileSystem": "landing"
