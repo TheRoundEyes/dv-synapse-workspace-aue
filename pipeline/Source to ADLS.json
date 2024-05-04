@@ -3,10 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
+				"name": "Lookup1",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -19,122 +17,18 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "Select * FROM SalesLT.SalesOrderDetail",
+						"sqlReaderQuery": {
+							"value": "SELECT 'Azure SQL Database' as SourceType,\ns.name as SourceSchema,\nDB_NAME() as SourceDB,\nt.name as SourceTableName,\n'' as SourceDateColumn,\n''as SourceKeyColumn,\n'dvsynapse' as Destination,\nt.name as DestinationTable,\n0 as ExistingTable,\n'Full Load' as LoadType,\n0 as SkipLoad,\n'' as WatermarkColumn,\n'' as LastWatermarkValue,\nGETDATE() as BatchLoadDate FROM sys.schemas s JOIN sys.tables t on s.schema_id = t.schema_id WHERE s.name ='SalesLT'\nGROUP BY s.name, t.name\n \n",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".csv"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "ds_sales_table",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_sales_adls",
-						"type": "DatasetReference",
-						"parameters": {
-							"Folder": "sales",
-							"Filename": "salesAddress.csv"
-						}
-					}
-				]
-			},
-			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
 					"dataset": {
-						"referenceName": "lookupfolder",
+						"referenceName": "ds_sales_tables",
 						"type": "DatasetReference"
 					},
-					"fieldList": [
-						"childItems"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "ParquetReadSettings"
-					}
-				}
-			},
-			{
-				"name": "ForEach1",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Get Metadata1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Notebook1",
-							"type": "DatabricksNotebook",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"notebookPath": "/Users/theroundeyess@gmail.com/Development/Curated",
-								"baseParameters": {
-									"FileName": {
-										"value": "@item().name",
-										"type": "Expression"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureDatabricks1",
-								"type": "LinkedServiceReference"
-							}
-						}
-					]
+					"firstRowOnly": false
 				}
 			}
 		],
