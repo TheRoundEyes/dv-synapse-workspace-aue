@@ -76,6 +76,8 @@
 						{
 							"name": "Full Load to Delta",
 							"type": "SynapseNotebook",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Full Load",
