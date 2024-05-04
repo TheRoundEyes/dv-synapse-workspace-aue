@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "0d34a204-7282-4d55-9df0-8ed474154a2e"
+				"spark.autotune.trackingId": "83449d4c-4046-4e43-bfa1-c16746e91190"
 			}
 		},
 		"metadata": {
@@ -56,7 +56,7 @@
 					"import datetime\n",
 					"\n",
 					"\n",
-					"lakeHousePath = 'abfss://landing@dvsynapse.dfs.core.windows.net/sales'\n",
+					"lakeHousePath = 'abfss://landing@dvsynapse.dfs.core.windows.net/landing/sales'\n",
 					"tableName = 'Address'\n",
 					"tableKey = ''\n",
 					"tableKey2 = None\n",
