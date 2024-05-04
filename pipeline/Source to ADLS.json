@@ -18,7 +18,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT 'Azure SQL Database' as SourceType,\ns.name as SourceSchema,\nDB_NAME() as SourceDB,\nt.name as SourceTableName,\n'' as SourceDateColumn,\n''as SourceKeyColumn,\n'dvsynapse' as Destination,\nt.name as DestinationTable,\n0 as ExistingTable,\n'Full Load' as LoadType,\n0 as SkipLoad,\n'' as WatermarkColumn,\n'' as LastWatermarkValue,\nGETDATE() as BatchLoadDate FROM sys.schemas s JOIN sys.tables t on s.schema_id = t.schema_id WHERE s.name ='SalesLT'\nGROUP BY s.name, t.name\n \n",
+							"value": "SELECT 'Azure SQL Database' as SourceType,\ns.name as SourceSchema,\nDB_NAME() as SourceDB,\nt.name as SourceTableName,\n'' as SourceDateColumn,\n''as SourceKeyColumn,\n'dvsynapse' as Destination,\nt.name as DestinationTable,\n0 as ExistingTable,\n'Full Load' as LoadType,\n0 as SkipLoad,\n'' as WatermarkColumn,\n'' as LastWatermarkValue,\nFORMAT(GETDATE(), 'dd-MM-yy hh:mm:ss') as BatchLoadDate FROM sys.schemas s JOIN sys.tables t on s.schema_id = t.schema_id WHERE s.name ='SalesLT'\nGROUP BY s.name, t.name\n \n",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
