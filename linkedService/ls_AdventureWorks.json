@@ -6,10 +6,10 @@
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
 			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=dv-synapse-datacard-sqlsrvr.database.windows.net;initial catalog=dv-synapse-datacard-db;user id=SQLAdmin",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiYWQ1ODVjMC1iOTEyLTRlM2YtODVlYy1kZjgxNjdjMmRlM2EiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyMTAzZmNhNS1iZDJiLTRjYWEtODc0Zi1mYTk1ZTJlZGZhMzgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
-			"referenceName": "marvin-ir",
+			"referenceName": "mjpr-ir-new",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
