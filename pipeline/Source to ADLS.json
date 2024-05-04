@@ -36,12 +36,14 @@
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "ParquetSink",
+									"type": "DelimitedTextSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
-										"type": "ParquetWriteSettings"
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".csv"
 									}
 								},
 								"enableStaging": false,
@@ -62,7 +64,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "ds_sales_full_load_files",
+									"referenceName": "ds_sales_full_load_csv",
 									"type": "DatasetReference",
 									"parameters": {
 										"TableName": {
