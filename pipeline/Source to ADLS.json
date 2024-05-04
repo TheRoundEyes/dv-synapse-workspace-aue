@@ -1,0 +1,40 @@
+{
+	"name": "Source to ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@contains(pipeline().parameters.LoadType, 'Full Load')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"SourceDB": {
+				"type": "string"
+			},
+			"SourceTable": {
+				"type": "string"
+			},
+			"Destination": {
+				"type": "string"
+			},
+			"DestinatioNTable": {
+				"type": "string"
+			},
+			"LoadType": {
+				"type": "string"
+			},
+			"SourceSchema": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
