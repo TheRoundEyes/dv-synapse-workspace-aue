@@ -5,6 +5,8 @@
 			{
 				"name": "Get Object Details",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -34,6 +36,8 @@
 			{
 				"name": "For Each",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Get Object Details",
@@ -199,7 +203,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -211,6 +215,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Load Details').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Source to ADLS Bronze",
