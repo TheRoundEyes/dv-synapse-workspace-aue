@@ -1,178 +1,24 @@
 {
 	"name": "Source to ADLS",
 	"properties": {
-		"activities": [
-			{
-				"name": "Get Object Details",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "SELECT 'Azure SQL Database' as SourceType,\ns.name as SourceSchema,\nDB_NAME() as SourceDB,\nt.name as SourceTableName,\n'' as SourceDateColumn,\n''as SourceKeyColumn,\n'dvsynapse' as Destination,\nt.name as DestinationTable,\n0 as ExistingTable,\n'Full Load' as LoadType,\n0 as SkipLoad,\n'' as WatermarkColumn,\n'' as LastWatermarkValue,\nFORMAT(GETDATE(), 'dd-MM-yy hh:mm:ss') as BatchLoadDate FROM sys.schemas s JOIN sys.tables t on s.schema_id = t.schema_id WHERE s.name ='SalesLT'\nGROUP BY s.name, t.name\n \n",
-							"type": "Expression"
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "ds_sales_tables",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
+		"parameters": {
+			"SourceDB": {
+				"type": "string"
 			},
-			{
-				"name": "For Each",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Get Object Details",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Get Object Details').output.value",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "Add Load Details",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[AddLoadDetails_SourceToLanding]",
-								"storedProcedureParameters": {
-									"BatchLoadDate": {
-										"value": {
-											"value": "@item().BatchLoadDate",
-											"type": "Expression"
-										},
-										"type": "DateTime"
-									},
-									"Destination": {
-										"value": {
-											"value": "@item().Destination",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"DestinationTable": {
-										"value": {
-											"value": "@item().DestinationTable",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"ExistingTable": {
-										"value": {
-											"value": "@item().ExistingTable",
-											"type": "Expression"
-										},
-										"type": "Int32"
-									},
-									"LastWatermarkValue": {
-										"value": {
-											"value": "@item().LastWatermarkValue",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"LoadType": {
-										"value": {
-											"value": "@item().LoadType",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"SkipLoad": {
-										"value": {
-											"value": "@item().SkipLoad",
-											"type": "Expression"
-										},
-										"type": "Int32"
-									},
-									"SourceDateColumn": {
-										"value": null,
-										"type": "DateTime"
-									},
-									"SourceDB": {
-										"value": {
-											"value": "@item().SourceDB",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"SourceKeyColumn": {
-										"value": {
-											"value": "@item().SourceKeyColumn",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"SourceSchema": {
-										"value": {
-											"value": "@item().SourceSchema",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"SourceTable": {
-										"value": {
-											"value": "@item().SourceTableName",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"SourceType": {
-										"value": {
-											"value": "@item().SourceType",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"WatermarkColumn": {
-										"value": {
-											"value": "@item().WatermarkColumn",
-											"type": "Expression"
-										},
-										"type": "String"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "ls_AdventureWorks",
-								"type": "LinkedServiceReference"
-							}
-						}
-					]
-				}
-			}
-		],
-		"variables": {
-			"Foldername": {
-				"type": "String"
+			"SourceTable": {
+				"type": "string"
+			},
+			"Destination": {
+				"type": "string"
+			},
+			"DestinatioNTable": {
+				"type": "string"
+			},
+			"LoadType": {
+				"type": "string"
+			},
+			"SourceSchema": {
+				"type": "string"
 			}
 		},
 		"annotations": []
