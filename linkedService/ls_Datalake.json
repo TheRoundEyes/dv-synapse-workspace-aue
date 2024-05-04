@@ -6,10 +6,10 @@
 		"type": "AzureBlobFS",
 		"typeProperties": {
 			"url": "https://dvsynapse.dfs.core.windows.net/",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwYjEzODQzZi05YWJhLTQwY2ItYTUxYS1lMDkyYTkyYmExMjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhOTZmZTcxNC1jZmM0LTQ4MTctOTcyOC1kNGE0ZDIxMTYzOWMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
-			"referenceName": "marvin-ir",
+			"referenceName": "mjpr-ir-new",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
